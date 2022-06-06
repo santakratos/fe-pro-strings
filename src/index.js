@@ -6,14 +6,11 @@
  */
 export const replaceZAndVFromString = (string) => {
     let output = '';
-    for (let i = 0; i < string.length; i++) {
-        if (string[i] === 'z') {
-            output += '*';
-        } else if (string[i] === 'v') {
-            output += '*';
-        } else {
-            output += string[i];
+    for (let letter of string) {
+        if (letter.toLowerCase() === 'z' || letter.toLowerCase() === 'v') {
+            letter = '*';
         }
+        output = `${output}${letter}`
     }
     return output;
 };
@@ -29,10 +26,10 @@ export const replaceZAndVFromString = (string) => {
  * @returns {string}
  */
 export const changeWord = (string, word, newWord) => {
-    const searchWord = string.indexOf(word);
-    const searchWordLength = word.length;
-    const firstPartString = string.slice(0, searchWord);
-    const secondPartString = string.slice(searchWord + searchWordLength);
+    const strartPosition = string.indexOf(word);
+    const endPosition = word.length;
+    const firstPartString = string.slice(0, strartPosition);
+    const secondPartString = string.slice(strartPosition + endPosition);
     const changeString = `${firstPartString}${newWord}${secondPartString}`;
     return changeString;
 };
@@ -61,15 +58,15 @@ export const truncate = (string, length) => {
 export const quantityOfSymbols = (string, symbol) => {
     const getLowerCaseString = string.toLowerCase();
     const getLowerCaseSymbol = symbol.toLowerCase();
-    let symbolsFound = '';
+    let symbolsCounter = 0;
     for (let i = 0; i < getLowerCaseString.length; ++i) {
         if (getLowerCaseString[i] === getLowerCaseSymbol) {
-            symbolsFound += getLowerCaseSymbol;
+            ++symbolsCounter;
         } else {
             continue;
         }
     }
-    return symbolsFound.length;
+    return symbolsCounter;
 };
 
 /**
@@ -90,17 +87,17 @@ export const quantityOfSymbols = (string, symbol) => {
 export const quantityOfSymbolsWithIndexOf = (string, symbol) => {
     const getLowerCaseString = string.toLowerCase();
     const getLowerCaseSymbol = symbol.toLowerCase();
-    let symbolsFound = '';
+    let symbolsCounter = 0;
     let i = 0;
 
     while (true) {
         const numberIndexOf = getLowerCaseString.indexOf(getLowerCaseSymbol, i);
         if (numberIndexOf !== -1) {
-            symbolsFound += getLowerCaseSymbol;
+            ++symbolsCounter;
             i = numberIndexOf + 1;
         } else {
             break;
         }
     }
-    return symbolsFound.length;
+    return symbolsCounter;
 };
