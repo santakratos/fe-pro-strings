@@ -10,7 +10,7 @@ export const replaceZAndVFromString = (string) => {
         if (letter.toLowerCase() === 'z' || letter.toLowerCase() === 'v') {
             letter = '*';
         }
-        output = `${output}${letter}`
+        output = `${output}${letter}`;
     }
     return output;
 };
